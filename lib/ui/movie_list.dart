@@ -4,12 +4,28 @@ import 'package:init_flutter_bloc/utils/app_constants.dart';
 
 import '../models/item_model.dart';
 
-class MovieList extends StatelessWidget {
+class MovieList extends StatefulWidget {
   const MovieList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<MovieList> createState() => _MovieListState();
+}
+
+class _MovieListState extends State<MovieList> {
+  @override
+  void initState() {
+    super.initState();
     bloc.fetchAllMovies();
+  }
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Popular Movies'),
